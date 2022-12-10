@@ -22,7 +22,8 @@ const CryptoForm = () => {
 		symbol: '',
 	})
 	const [cryptoList, setCryptoList] = useState<any[]>([])
-	const [isDropDownVisable, setDropDown] = useState(true)
+	const [isDropDownVisable, setDropDown] = useState(false)
+	const [canSave, setCanSave] = useState(false)
 
 	const handleDropDownClick = (symbol: string, name: string) => {
 		setTransactionData((prevState) => ({
@@ -49,15 +50,19 @@ const CryptoForm = () => {
 		const { name, value } = event.currentTarget
 
 		if (name === 'name') {
-			!value && lookForMatch(cryptoList, value.toLowerCase())
-				? setDropDown(true)
-				: setDropDown(false)
+			value !== '' && lookForMatch(cryptoList, value) ? setDropDown(true) : setDropDown(false)
 		}
 
 		setTransactionData((prevState) => ({ ...prevState, [name]: value }))
 	}
+
+
+
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
+		addCryptoToDb(transactionData)
+		dispatch(hideModal())
 	}
 
 	useEffect(() => {
@@ -72,7 +77,8 @@ const CryptoForm = () => {
 			}
 			fetchListData()
 		}
-	}, [])
+		setCanSave([...Object.values(transactionData)].every(Boolean))
+	}, [transactionData])
 
 	return (
 		<Form onSubmit={handleSubmit}>
@@ -87,7 +93,7 @@ const CryptoForm = () => {
 					required
 				/>
 				<ul
-					className={`dropdown-menu ${!isDropDownVisable && 'show'}`}
+					className={`dropdown-menu ${isDropDownVisable && 'show'}`}
 					style={{
 						height: '300px',
 						overflowY: 'scroll',
@@ -158,7 +164,7 @@ const CryptoForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group className="formGroup mt-5">
-				<Button variant="primary" type="submit" >
+				<Button variant="primary" type="submit" disabled={!canSave}>
 					Add
 				</Button>
 				<Button variant="secondary" onClick={() => dispatch(hideModal())} className="ms-2">
