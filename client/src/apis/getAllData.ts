@@ -1,6 +1,6 @@
-import { BASE_DB_URL } from '../config/config'
+import { BASE_DB_URL as DB } from '../config/config'
 
 export const getAllData = async () => {
-	const response = await fetch(`${BASE_DB_URL}/dashBoard`)
+	const response = await fetch(`${DB}/dashBoard`)
 	return await response.json()
 }

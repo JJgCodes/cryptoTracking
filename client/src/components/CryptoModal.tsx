@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button'
+
 import Modal from 'react-bootstrap/Modal'
 import { hideModal } from '../store/slices/modalSlice'
 import CryptoForm from './CryptoForm'
@@ -17,14 +17,6 @@ const CryptoModal = () => {
 			<Modal.Body>
 				<CryptoForm />
 			</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={() => dispatch(hideModal())}>
-					Close
-				</Button>
-				<Button variant="primary" type="submit" form="transactionForm">
-					Add
-				</Button>
-			</Modal.Footer>
 		</Modal>
 	)
 }

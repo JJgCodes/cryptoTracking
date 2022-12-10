@@ -1,9 +1,14 @@
 import Form from 'react-bootstrap/Form'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { COIN_URL } from '../config/config'
+import { addCryptoToDb } from '../apis/addToDb'
 import Button from 'react-bootstrap/Button'
+import { useDispatch } from 'react-redux'
+import { hideModal } from '../store/slices/modalSlice'
 
 const CryptoForm = () => {
+	const dispatch = useDispatch()
+
 	const date = new Date()
 	const today = date.toISOString().slice(0, 10)
 	const priorDate = new Date(date.setFullYear(date.getFullYear() - 10))
@@ -51,9 +56,8 @@ const CryptoForm = () => {
 
 		setTransactionData((prevState) => ({ ...prevState, [name]: value }))
 	}
-
-	const handleSubmit = () => {
-		
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault()
 	}
 
 	useEffect(() => {
@@ -72,7 +76,7 @@ const CryptoForm = () => {
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<Form.Group>
+			<Form.Group className="formGroup">
 				<Form.Label>Name</Form.Label>
 				<Form.Control
 					type="text"
@@ -115,31 +119,33 @@ const CryptoForm = () => {
 					})}
 				</ul>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="formGroup">
 				<Form.Label>Quantity</Form.Label>
 				<Form.Control
 					type="number"
 					name="quantity"
 					max={100_000}
-					min={0.0}
+					min={0}
+					step={0.0000001}
 					value={transactionData.quantity}
 					onChange={handleInputChange}
 					required
 				/>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="formGroup">
 				<Form.Label>Paid</Form.Label>
 				<Form.Control
 					type="number"
 					name="paid"
 					max={10_000}
 					min={0.0}
+					step={0.01}
 					value={transactionData.paid}
 					onChange={handleInputChange}
 					required
 				/>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="formGroup">
 				<Form.Label>Date</Form.Label>
 				<Form.Control
 					type="date"
@@ -151,8 +157,15 @@ const CryptoForm = () => {
 					required
 				/>
 			</Form.Group>
+			<Form.Group className="formGroup mt-5">
+				<Button variant="primary" type="submit" >
+					Add
+				</Button>
+				<Button variant="secondary" onClick={() => dispatch(hideModal())} className="ms-2">
+					Close
+				</Button>
+			</Form.Group>
 		</Form>
-		
 	)
 }
 export default CryptoForm
