@@ -57,7 +57,9 @@ const CryptoForm = () => {
 	}
 
 	const handleSubmit = (e: React.FormEvent) => {
+		setCanSave(false)
 		e.preventDefault()
+		transactionData.date = transactionData.date.split('-').reverse().join('/')
 		addCryptoToDb(transactionData)
 		dispatch(hideModal())
 	}

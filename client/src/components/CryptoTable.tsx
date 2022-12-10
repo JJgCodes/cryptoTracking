@@ -12,7 +12,6 @@ import CryptoModal from './CryptoModal'
 
 const CryptoTable = () => {
 	const data = useSelector((state: RootState) => state.allData.data)
-	const modalStatus = useSelector((state: RootState) => state.modal.isModalVisible)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
