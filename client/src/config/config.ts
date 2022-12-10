@@ -9,3 +9,24 @@ export type inputData = {
 	paid: number | string
 	date: String
 }
+
+export interface Holding {
+	symbol: string
+	name: string
+	quantity: number
+	paid: number
+	date: string
+}
+
+export interface Transaction {
+	name: string
+	quantity: number
+	paid: number
+	date: string
+	symbol: string
+}
+
+export interface Data {
+	holdings: Holding[]
+	transactions: Transaction[]
+}
