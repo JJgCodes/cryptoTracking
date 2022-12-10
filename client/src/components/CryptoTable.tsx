@@ -6,10 +6,8 @@ import { RootState } from '../store/store'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-import Modal from 'react-bootstrap/Modal'
 import { Data } from '../config/config'
-import { hideModal, showModal } from '../store/slices/modalSlice'
-import Form from './CryptoForm'
+import { showModal } from '../store/slices/modalSlice'
 import CryptoModal from './CryptoModal'
 
 const CryptoTable = () => {
