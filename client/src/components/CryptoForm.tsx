@@ -28,7 +28,7 @@ const CryptoForm = () => {
 	const handleDropDownClick = (symbol: string, name: string) => {
 		setTransactionData((prevState) => ({
 			...prevState,
-			symbol: symbol,
+			symbol: symbol.toUpperCase(),
 			name: name,
 		}))
 		setDropDown(false)
@@ -55,9 +55,6 @@ const CryptoForm = () => {
 
 		setTransactionData((prevState) => ({ ...prevState, [name]: value }))
 	}
-
-
-
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
@@ -124,6 +121,16 @@ const CryptoForm = () => {
 						}
 					})}
 				</ul>
+			</Form.Group>
+			<Form.Group className="formGroup">
+				<Form.Label>Symbol</Form.Label>
+				<Form.Control
+					type="text"
+					name="symbol"
+					value={transactionData.symbol}
+					onChange={handleInputChange}
+					required
+				/>
 			</Form.Group>
 			<Form.Group className="formGroup">
 				<Form.Label>Quantity</Form.Label>
