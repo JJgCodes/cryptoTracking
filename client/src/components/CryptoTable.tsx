@@ -28,9 +28,8 @@ const CryptoTable = () => {
 	return (
 		<div>
 			<div className="container mt-5">
-				<h1>Dashboard</h1>
 				{data.map((obj: Data, i: number) => (
-					<Card key={i}>
+					<Card key={i} className="text-center">
 						<Card.Body>
 							<h2>Holdings</h2>
 							<Table striped bordered hover>
