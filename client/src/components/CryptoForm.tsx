@@ -30,21 +30,13 @@ const CryptoForm = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Form.Group>
-				<Form.Label>Symbol</Form.Label>
-				<Form.Control
-					type="text"
-					name="symbol"
-					value={transactionData.symbol}
-					onChange={handleInputChange}
-				/>
-			</Form.Group>
-			<Form.Group>
 				<Form.Label>Name</Form.Label>
 				<Form.Control
 					type="text"
 					name="name"
 					value={transactionData.name}
 					onChange={handleInputChange}
+					required
 				/>
 			</Form.Group>
 			<Form.Group>
@@ -52,8 +44,11 @@ const CryptoForm = () => {
 				<Form.Control
 					type="number"
 					name="quantity"
+					max={100_000}
+					min={0.0}
 					value={transactionData.quantity}
 					onChange={handleInputChange}
+					required
 				/>
 			</Form.Group>
 			<Form.Group>
@@ -61,8 +56,11 @@ const CryptoForm = () => {
 				<Form.Control
 					type="number"
 					name="paid"
+					max={10_000}
+					min={0.0}
 					value={transactionData.paid}
 					onChange={handleInputChange}
+					required
 				/>
 			</Form.Group>
 			<Form.Group>
@@ -74,6 +72,7 @@ const CryptoForm = () => {
 					max={today}
 					value={transactionData.date}
 					onChange={handleInputChange}
+					required
 				/>
 			</Form.Group>
 		</Form>
