@@ -93,7 +93,7 @@ const CryptoForm = () => {
 					required
 				/>
 				<ul
-					className={`dropdown-menu ${isDropDownVisable && 'show'}`}
+					className={`dropdown-menu ${isDropDownVisable ? 'show' : 'hidden'}`}
 					style={{
 						height: '300px',
 						overflowY: 'scroll',
