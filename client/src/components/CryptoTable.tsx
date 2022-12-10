@@ -31,7 +31,7 @@ const CryptoTable = () => {
 				{data.map((obj: Data, i: number) => (
 					<Card key={i} className="text-center">
 						<Card.Body>
-							<h2>Holdings</h2>
+							<h2 className="mb-4">Holdings</h2>
 							<Table striped bordered hover>
 								<thead>
 									<tr>
@@ -54,7 +54,7 @@ const CryptoTable = () => {
 									))}
 								</tbody>
 							</Table>
-							<h2>Transactions</h2>
+							<h2 className="mb-4 mt-5">Transactions</h2>
 							<Table striped bordered hover>
 								<thead>
 									<tr>

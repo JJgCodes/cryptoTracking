@@ -2,11 +2,19 @@ import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 
 const CryptoForm = () => {
+	const date = new Date()
+	const month = ('0' + (date.getMonth() + 1)).slice(-2)
+	const day = ('0' + date.getDate()).slice(-2)
+	const year = date.getFullYear()
+
+	const today = `${year}-${month}-${day}`
+	const minimumDate = `${year - 10}-${month}-${day}`
+
 	const [transactionData, setTransactionData] = useState({
 		name: '',
 		quantity: 0,
 		paid: 0,
-		date: '',
+		date: today,
 		symbol: '',
 	})
 
@@ -62,6 +70,8 @@ const CryptoForm = () => {
 				<Form.Control
 					type="date"
 					name="date"
+					min={minimumDate}
+					max={today}
 					value={transactionData.date}
 					onChange={handleInputChange}
 				/>
