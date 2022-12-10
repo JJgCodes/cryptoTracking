@@ -31,7 +31,7 @@ const CryptoForm = () => {
 			symbol: symbol,
 			name: name,
 		}))
-		setDropDown(true)
+		setDropDown(false)
 	}
 
 	const lookForMatch = (data: any[], checkAgainstThis: string) => {
