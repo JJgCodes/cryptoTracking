@@ -5,10 +5,12 @@ import { addCryptoToDb } from '../apis/addToDb'
 import Button from 'react-bootstrap/Button'
 import { useDispatch } from 'react-redux'
 import { hideModal } from '../store/slices/modalSlice'
+import { useNavigate } from 'react-router-dom'
 // import { pushData } from '../store/slices/allDataSlice'
 
 const CryptoForm = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const date = new Date()
 	const today = date.toISOString().slice(0, 10)
@@ -62,7 +64,7 @@ const CryptoForm = () => {
 		e.preventDefault()
 		// dispatch(pushData(transactionData))
 		addCryptoToDb(transactionData)
-		
+		dispatch(hideModal())
 	}
 
 	useEffect(() => {
