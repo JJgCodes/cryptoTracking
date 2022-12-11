@@ -5,12 +5,12 @@ import { addCryptoToDb } from '../apis/addToDb'
 import Button from 'react-bootstrap/Button'
 import { useDispatch } from 'react-redux'
 import { hideModal } from '../store/slices/modalSlice'
-import { useNavigate } from 'react-router-dom'
+
 // import { pushData } from '../store/slices/allDataSlice'
 
 const CryptoForm = () => {
 	const dispatch = useDispatch()
-	const navigate = useNavigate()
+
 
 	const date = new Date()
 	const today = date.toISOString().slice(0, 10)
@@ -59,11 +59,11 @@ const CryptoForm = () => {
 		setTransactionData((prevState) => ({ ...prevState, [name]: value }))
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		setCanSave(false)
 		e.preventDefault()
 		// dispatch(pushData(transactionData))
-		addCryptoToDb(transactionData)
+		await addCryptoToDb(transactionData)
 		dispatch(hideModal())
 	}
 
