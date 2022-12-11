@@ -11,7 +11,7 @@ export type inputData = {
 }
 
 export interface Holding {
-	_id: string
+	_id?: string
 	symbol: string
 	name: string
 	quantity: number
@@ -20,7 +20,7 @@ export interface Holding {
 }
 
 export interface Transaction {
-	_id: string
+	_id?: string
 	name: string
 	quantity: number
 	paid: number

@@ -5,6 +5,7 @@ import { addCryptoToDb } from '../apis/addToDb'
 import Button from 'react-bootstrap/Button'
 import { useDispatch } from 'react-redux'
 import { hideModal } from '../store/slices/modalSlice'
+// import { pushData } from '../store/slices/allDataSlice'
 
 const CryptoForm = () => {
 	const dispatch = useDispatch()
@@ -35,7 +36,7 @@ const CryptoForm = () => {
 	}
 
 	const lookForMatch = (data: any[], checkAgainstThis: string) => {
-		const value = checkAgainstThis
+		const value = checkAgainstThis.toLowerCase()
 		const valueLeng = checkAgainstThis.length
 
 		return data.find(
@@ -59,9 +60,9 @@ const CryptoForm = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		setCanSave(false)
 		e.preventDefault()
-		transactionData.date = transactionData.date.split('-').reverse().join('/')
+		// dispatch(pushData(transactionData))
 		addCryptoToDb(transactionData)
-		dispatch(hideModal())
+		
 	}
 
 	useEffect(() => {

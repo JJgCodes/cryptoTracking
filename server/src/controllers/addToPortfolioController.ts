@@ -10,7 +10,7 @@ export async function addToPortfolioController(req: Request, res: Response) {
 	const symbol = req.body.symbol || ''
 	const quantity = Number(req.body.quantity) || 0
 	const paid = Number(req.body.paid) || 0
-	const date = req.body.date || ''
+	const date = req.body.date.split('-').reverse().join('-') || ''
 
 	if (name === '' || symbol === '' || date === '' || paid <= 0 || quantity <= 0) {
 		res.status(400).send('missing or invalid data.')

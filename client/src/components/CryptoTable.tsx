@@ -6,7 +6,6 @@ import { RootState } from '../store/store'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-import { Data } from '../config/config'
 import { showModal } from '../store/slices/modalSlice'
 import CryptoModal from './CryptoModal'
 
@@ -15,14 +14,14 @@ const CryptoTable = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		if (data.length === 0) {
-			const fetchDataAndDispatch = async () => {
-				const data = await getAllData()
-				dispatch(setData(data))
-			}
-			fetchDataAndDispatch()
+		const fetchDataAndDispatch = async () => {
+			const data = await getAllData()
+			dispatch(setData(data))
 		}
+		fetchDataAndDispatch()
+		console.log('Fetching')
 	}, [])
+
 	return (
 		<div>
 			<div className="container mt-5">
@@ -42,7 +41,7 @@ const CryptoTable = () => {
 								</thead>
 								<tbody>
 									{obj.holdings.map((holding, i) => (
-										<tr key={i}>
+										<tr key={holding._id || i}>
 											<td>{holding.symbol}</td>
 											<td>{holding.name}</td>
 											<td>{holding.quantity}</td>
@@ -65,7 +64,7 @@ const CryptoTable = () => {
 								</thead>
 								<tbody>
 									{obj.transactions.map((transaction, i) => (
-										<tr key={i}>
+										<tr key={transaction._id || i}>
 											<td>{transaction.symbol}</td>
 											<td>{transaction.name}</td>
 											<td>{transaction.quantity}</td>
