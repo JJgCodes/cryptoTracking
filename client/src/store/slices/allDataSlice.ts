@@ -1,10 +1,12 @@
 import { createSlice} from '@reduxjs/toolkit'
+import { Data } from '../../config/config'
 
 interface DataState {
-	data: any
+  data: Data[]
 }
+
 const initialState: DataState = {
-	data: [],
+	data: []
 }
 
 const dataSlice = createSlice({

@@ -23,11 +23,10 @@ const CryptoTable = () => {
 			fetchDataAndDispatch()
 		}
 	}, [])
-
 	return (
 		<div>
 			<div className="container mt-5">
-				{data.map((obj: Data, i: number) => (
+				{data.map((obj, i) => (
 					<Card key={i} className="text-center">
 						<Card.Body>
 							<h2 className="mb-4">Holdings</h2>
