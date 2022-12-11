@@ -63,8 +63,12 @@ const CryptoForm = () => {
 		setCanSave(false)
 		e.preventDefault()
 		// dispatch(pushData(transactionData))
-		await addCryptoToDb(transactionData)
-		dispatch(hideModal())
+		try {
+			await addCryptoToDb(transactionData)
+			dispatch(hideModal())
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	useEffect(() => {
