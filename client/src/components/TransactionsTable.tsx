@@ -19,7 +19,7 @@ const TransactionsTable = () => {
 				</tr>
 			</thead>
 			<tbody>
-				{transaction.length ? (
+				{data.length && transaction.length ? (
 					transaction.map((transaction, i) => (
 						<tr key={transaction._id || i}>
 							<td>{transaction.symbol}</td>
